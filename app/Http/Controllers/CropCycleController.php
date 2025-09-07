@@ -13,11 +13,18 @@ class CropCycleController extends Controller
 {
     public function index()
     {
-        $cycles = CropCycle::with('farm.user')->latest()->paginate(12);
         $user = Auth::user();
+        $cycles = CropCycle::with('farm.user')
+            ->whereHas('farm', function ($q) use ($user) {
+                $q->where('user_id', $user->id);
+            })
+            ->latest()
+            ->paginate(12);
+
         $recommendations = $user
             ? $user->recommendations()->with('farm')->where('status', 'new')->latest()->take(5)->get()
             : collect();
+
         return Inertia::render('CropCycles/Index', [
             'cycles' => $cycles,
             'recommendations' => $recommendations,

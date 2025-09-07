@@ -54,4 +54,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Recommendation::class);
     }
+
+    // app/Models/User.php
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 }
