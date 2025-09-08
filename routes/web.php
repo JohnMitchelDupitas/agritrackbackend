@@ -18,7 +18,8 @@ Route::resource('farms', FarmController::class);
 
 Route::resource('incidents', IncidentController::class);
 
-Route::middleware(['admin'])->group(function () {
+Route::middleware(['auth','admin'])->group(function () {
+    Route::redirect('/admin', '/admin/map');
     Route::get('/admin/map', [App\Http\Controllers\AdminMapController::class, 'index'])
         ->name('admin.map');
 });

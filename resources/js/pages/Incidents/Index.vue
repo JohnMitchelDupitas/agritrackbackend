@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="incident in incidents.data" :key="incident.id" class="row">
-                        <td class="cell nowrap">{{ formatDate(incident.date_reported) }}</td>
+                        <td class="cell nowrap">{{ formatDate(incident.created_at) }}</td>
                         <td class="cell nowrap">{{ incident.farm?.name ?? '—' }}</td>
                         <td class="cell nowrap">
                             <span v-if="incident.crop_cycle">

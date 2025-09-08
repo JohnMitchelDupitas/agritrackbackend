@@ -55,10 +55,10 @@
                     </div>
 
                     <!-- Date -->
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label class="label">Date Reported</label>
                         <input type="date" v-model="form.date_reported" required class="input" />
-                    </div>
+                    </div> -->
 
                     <!-- Notes -->
                     <div class="form-group">
@@ -102,9 +102,10 @@ const form = useForm({
     type: '',
     severity: '',
     impact_pct: '',
-    date_reported: '',
+    // date_reported: '',
     notes: '',
     photo: null as File | null,
+    created_at: ''
 });
 
 function handleFile(e: Event) {

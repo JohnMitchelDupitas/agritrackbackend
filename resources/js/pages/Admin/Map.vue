@@ -1,20 +1,29 @@
 <template>
-  <div>
-    <h1>🌍 Admin Map (Leaflet)</h1>
-    <div id="map" style="height: 800px; width: 100%;"></div>
-  </div>
+  <AdminLayout>
+    <div>
+      <h1>🌍 Admin Map (Leaflet)</h1>
+      <div id="map" style="height: 800px; width: 100%;"></div>
+    </div>
+  </AdminLayout>
+  
 </template>
 
 <script setup lang="ts">
+import AdminLayout from '@/layouts/AdminLayout.vue'
 import { onMounted } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 
 
 // Props passed from controller
-const props = defineProps({
-  farms: Array,
-  incidents: Array
+interface FarmUser { name: string }
+interface Farm { lat?: number; lng?: number; name: string; user: FarmUser }
+interface IncidentFarm { name: string }
+interface Incident { gps_lat?: number; gps_lng?: number; type: string; severity: string; farm: IncidentFarm }
+
+const props = withDefaults(defineProps<{ farms?: Farm[]; incidents?: Incident[] }>(), {
+  farms: () => [],
+  incidents: () => []
 })
 
 onMounted(() => {

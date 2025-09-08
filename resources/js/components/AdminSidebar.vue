@@ -6,33 +6,18 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, Sid
 import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, Sprout, AlertTriangle, CloudSun } from 'lucide-vue-next';
+import { Map, CloudSun } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
+        title: 'Admin Map',
+        href: '/admin/map',
+        icon: Map,
     },
     {
-        title: 'Farms',
-        href: '/farms',
-        icon: Folder,
-    },
-    {
-        title: 'Crop Cycles',
-        href: '/crop-cycles',
-        icon: Sprout,
-    },
-    {
-        title: 'Incidents',
-        href: '/incidents',
-        icon: AlertTriangle,
-    },
-    {
-        title: 'Weather',
-        href: '/weather/farm',
+        title: 'Admin Weather',
+        href: '/admin/weather',
         icon: CloudSun,
     },
 ];
@@ -64,4 +49,7 @@ const footerNavItems: NavItem[] = [];
         </SidebarFooter>
     </Sidebar>
     <slot />
+    
 </template>
+
+
